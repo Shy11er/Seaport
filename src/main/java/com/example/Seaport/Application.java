@@ -16,6 +16,6 @@ public class Application {
 
 	@Bean
 	CommandLineRunner commandLineRunner(Repository repository) {
-		return args -> repository.save(new Post("asdf"));
+		return args -> repository.save(new Post("asfasfasfasd"));
 	}
 }
