@@ -8,3 +8,12 @@ services:
       - 'POSTGRES_USER=daniel'
     ports:
       - '5432'
+
+  app:
+    build: '.'
+    restart: always
+    working_dir: '/usr/src/maven/'
+    volumes:
+      - './:/usr/src/maven/'
+    ports:
+      - '8081:8080'
