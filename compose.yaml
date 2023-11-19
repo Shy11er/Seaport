@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: 'postgres'
+    restart: always
+    environment:
+      - 'POSTGRES_DB=spring'
+      - 'POSTGRES_PASSWORD=daniel'
+      - 'POSTGRES_USER=daniel'
+    ports:
+      - '5432'
