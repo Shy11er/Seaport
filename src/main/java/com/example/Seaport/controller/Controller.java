@@ -1,6 +1,5 @@
 package com.example.Seaport.controller;
 
-import com.example.Seaport.model.Post;
 import com.example.Seaport.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

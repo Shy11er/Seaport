@@ -1,6 +1,5 @@
 package com.example.Seaport;
 
-import com.example.Seaport.model.Post;
 import com.example.Seaport.repository.Repository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
