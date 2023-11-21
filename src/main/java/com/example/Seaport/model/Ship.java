@@ -1,15 +1,14 @@
 package com.example.Seaport.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 import com.example.Seaport.model.Cargo.CargoType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Transient;
 
+@Entity
+@Table
 public class Ship {
     @Id
     @GeneratedValue
@@ -23,9 +22,11 @@ public class Ship {
     private LocalDate arrival;
     private LocalDate departure;
 
-    @OneToMany(mappedBy = "ship")
+    @OneToOne
+    @JoinColumn(name="request_id")
+    private Request request;
+    @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL)
     private List<Cargo> cargos;
-
 
     public enum ShipType {
         TANKER,
@@ -33,6 +34,7 @@ public class Ship {
     }
 
 
+    public Ship() {};
     public Ship(String title,
                 Integer weight,
                 LocalDate arrival,

@@ -1,15 +1,13 @@
 package com.example.Seaport.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table
 public class Request {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
+    private Ship ship;
 }
