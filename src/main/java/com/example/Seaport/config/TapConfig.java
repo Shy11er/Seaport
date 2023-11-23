@@ -11,25 +11,25 @@ import java.util.List;
 
 @Configuration
 public class TapConfig {
-    @Bean
-    CommandLineRunner commandLineRunnerTap(TapRepository repository){
-        return args -> {
-            Tap tap1 = new Tap(
-                    CargoType.BULK,
-                    5
-            );
-
-            Tap tap2 = new Tap(
-                    CargoType.CONTAINER,
-                    12
-            );
-
-            Tap tap3 = new Tap(
-                    CargoType.LIQUID,
-                    2
-            );
-
-            repository.saveAll(List.of(tap1, tap2, tap3));
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunnerTap(TapRepository repository){
+//        return args -> {
+//            Tap tap1 = new Tap(
+//                    CargoType.BULK,
+//                    5
+//            );
+//
+//            Tap tap2 = new Tap(
+//                    CargoType.CONTAINER,
+//                    12
+//            );
+//
+//            Tap tap3 = new Tap(
+//                    CargoType.LIQUID,
+//                    2
+//            );
+//
+//            repository.saveAll(List.of(tap1, tap2, tap3));
+//        };
+//    }
 }
