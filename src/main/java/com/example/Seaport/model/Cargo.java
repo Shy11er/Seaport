@@ -2,8 +2,8 @@ package com.example.Seaport.model;
 
 import jakarta.persistence.*;
 
-@Entity
 @Table
+@Entity
 public class Cargo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

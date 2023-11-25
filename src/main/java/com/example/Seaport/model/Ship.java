@@ -7,8 +7,9 @@ import java.util.List;
 
 import com.example.Seaport.model.Cargo.CargoType;
 
-@Entity
+
 @Table
+@Entity
 public class Ship {
     @Id
     @GeneratedValue
