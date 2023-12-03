@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.example.Seaport.model.Cargo.CargoType;
 
-
 @Table
 @Entity
 public class Ship {
@@ -28,6 +27,10 @@ public class Ship {
     private Request request;
     @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL)
     private List<Cargo> cargos;
+    @ManyToOne()
+    private Schedule schedule;
+    @ManyToOne()
+    private User user;
 
     public enum ShipType {
         TANKER,
@@ -46,6 +49,42 @@ public class Ship {
         this.arrival = arrival;
         this.departure = departure;
         this.cargo_type = cargo_type;
+    }
+
+    public ShipType getShip_type() {
+        return ship_type;
+    }
+
+    public void setCargo_amount(Integer cargo_amount) {
+        this.cargo_amount = cargo_amount;
+    }
+
+    public void setShip_type(ShipType ship_type) {
+        this.ship_type = ship_type;
+    }
+
+    public Request getRequest() {
+        return request;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 
     public void setType(ShipType type) {
