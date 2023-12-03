@@ -30,9 +30,9 @@ public class UserService {
 
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-        String hashPassword = encoder.encode(user.getPassword());
-        user.setPassword(hashPassword);
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
+//        String hashPassword = encoder.encode(user.getPassword());
+        user.setPassword(userDto.getPassword());
 
         userRepository.save(user);
     }
