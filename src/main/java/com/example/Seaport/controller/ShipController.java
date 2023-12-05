@@ -4,24 +4,18 @@ import com.example.Seaport.model.Ship;
 import com.example.Seaport.model.cargo.BulkCargo;
 import com.example.Seaport.repository.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path="api")
+@RequestMapping(path="auth")
 public class ShipController {
     private static ShipRepository repository;
 
     @Autowired
     public ShipController(ShipRepository repository) {
         this.repository = repository;
-    }
-
-    @GetMapping("/")
-    public static List<BulkCargo> getAll() {
-        return repository.findAll();
     }
 }
