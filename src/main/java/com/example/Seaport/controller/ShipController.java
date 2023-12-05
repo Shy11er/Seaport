@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="auth")
+@RequestMapping(path="ship")
 public class ShipController {
     private static ShipRepository repository;
 
     @Autowired
     public ShipController(ShipRepository repository) {
         this.repository = repository;
+    }
+
+    public ResponseEntity<String> hell() {
+        return ResponseEntity.ok("asd");
     }
 }

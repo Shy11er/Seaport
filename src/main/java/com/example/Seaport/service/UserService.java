@@ -19,21 +19,4 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void create(User userDto) {
-        Optional<User> findUser = userRepository.findByEmail(userDto.getEmail());
-
-        if (findUser.isPresent()) {
-            throw new IllegalStateException("Email already is taken");
-        }
-
-        User user = new User();
-
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
-//        String hashPassword = encoder.encode(user.getPassword());
-        user.setPassword(userDto.getPassword());
-
-        userRepository.save(user);
-    }
 }

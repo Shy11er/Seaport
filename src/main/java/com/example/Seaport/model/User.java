@@ -14,10 +14,10 @@ import java.util.List;
 
 @Table(name="users")
 @Entity
-@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User implements UserDetails {
     @Id
     @GeneratedValue
@@ -29,6 +29,12 @@ public class User implements UserDetails {
     private Role role;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Ship> ships;
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     public void setShips(List<Ship> ships) {
         this.ships = ships;
@@ -98,3 +104,5 @@ public class User implements UserDetails {
         this.password = password;
     }
 }
+
+
