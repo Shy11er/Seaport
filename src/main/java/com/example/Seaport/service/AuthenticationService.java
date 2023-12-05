@@ -8,8 +8,8 @@ import com.example.Seaport.model.User;
 import com.example.Seaport.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,10 +38,15 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse login(AuthnticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
-        User user = repository.findByEmail(request.getEmail()).orElseThrow(() -> new ResponseEntity("asdfsa"));
+
+//        return new AuthenticationResponse("asfasdasdfuser");
+        User user = repository.findByEmail(request.getEmail()).orElseThrow();
+        if (user == null) {
+            throw new BadCredentialsException("1000");
+        }
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new BadCredentialsException("1000");
+        }
 //        User updater = new User("ioapsfiopaskf", request.getEmail(), request.getPassword());
         var jwtToken = jwtService.generateToken(user);
 //        repository.save(updater);

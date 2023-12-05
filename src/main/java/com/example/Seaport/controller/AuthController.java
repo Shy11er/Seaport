@@ -13,6 +13,7 @@ import java.util.List;
 //@CrossOrigin
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin
 public class AuthController {
     private final AuthenticationService authService;
 
