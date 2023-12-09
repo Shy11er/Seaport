@@ -8,11 +8,15 @@ import com.example.Seaport.model.User;
 import com.example.Seaport.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +35,12 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse register(RegisterRequest request) {
+        Optional<User> findUser = repository.findByEmail(request.getEmail());
+
+        if (findUser.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User with same email already exist");
+        }
+
         User user = new User(request.getName(), request.getEmail(), passwordEncoder.encode(request.getPassword()));
         repository.save(user);
         var jwtToken = jwtService.generateToken(user);
