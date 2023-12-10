@@ -10,15 +10,14 @@ public class Cargo {
     private Integer id;
     private CargoType cargo_type;
     private Integer weight;
-
     @ManyToOne
     @JoinColumn(name="ship_id")
     private Ship ship;
 
     public enum CargoType {
-        BULK,
-        CONTAINER,
-        LIQUID
+        Bulk,
+        Container,
+        Liqued
     }
 
     public Integer getId() {

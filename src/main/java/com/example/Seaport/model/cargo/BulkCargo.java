@@ -14,7 +14,9 @@ public class BulkCargo extends Cargo {
     public BulkCargo(Integer volume) {
         this.volume = volume;
     }
-    public BulkCargo() {}
+    public BulkCargo() {
+
+    }
 
     public void setId(Integer id) {
         this.id = id;

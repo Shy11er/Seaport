@@ -33,21 +33,20 @@ public class Ship {
     private User user;
 
     public enum ShipType {
-        TANKER,
-        BULK
+        Tanker,
+        Bulk,
+        Container
     }
 
 
     public Ship() {};
     public Ship(String title,
                 Integer weight,
-                LocalDate arrival,
-                LocalDate departure,
+                ShipType type,
                 CargoType cargo_type) {
         this.title = title;
         this.weight = weight;
-        this.arrival = arrival;
-        this.departure = departure;
+        this.ship_type = type;
         this.cargo_type = cargo_type;
     }
 

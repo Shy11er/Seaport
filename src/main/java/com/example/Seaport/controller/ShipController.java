@@ -1,9 +1,9 @@
 package com.example.Seaport.controller;
 
 import com.example.Seaport.model.Ship;
-import com.example.Seaport.model.cargo.BulkCargo;
-import com.example.Seaport.repository.ShipRepository;
+import com.example.Seaport.service.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +12,22 @@ import java.util.List;
 @RestController
 @RequestMapping(path="ship")
 public class ShipController {
-    private static ShipRepository repository;
+    private static ShipService service;
 
     @Autowired
-    public ShipController(ShipRepository repository) {
-        this.repository = repository;
+    public ShipController(ShipService service) {
+        this.service = service;
     }
 
-    public ResponseEntity<String> hell() {
-        return ResponseEntity.ok("asd");
+    @PostMapping("/")
+    public ResponseEntity<Ship> create(@RequestBody ShipRequest shipDto) {
+        Ship ship = service.create(shipDto);
+        return new ResponseEntity<>(ship, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Ship>> getAll() {
+        List<Ship> ships = service.getAll();
+        return new ResponseEntity<>(ships, HttpStatus.OK);
     }
 }
