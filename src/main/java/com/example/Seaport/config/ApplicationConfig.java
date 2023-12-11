@@ -21,12 +21,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 //@NoArgsConstructor
 public class ApplicationConfig {
-    private UserRepository userRepository;
+    private static UserRepository userRepository;
 
-//    @Autowired
-//    public ApplicationConfig(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
+    @Autowired
+    public ApplicationConfig(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -46,8 +46,4 @@ public class ApplicationConfig {
         return config.getAuthenticationManager();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

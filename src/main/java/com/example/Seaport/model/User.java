@@ -1,32 +1,35 @@
 package com.example.Seaport.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
-@Table(name="users")
-@Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Entity
+@ToString
+@Table(name="users")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue
-    private Integer id;
-    private String name;
-    private String email;
-    private String password;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
+    String name;
+    @Column(unique = true)
+    String email;
+    String password;
+    LocalDate createdAt;
+    LocalDate updatedAt;
+    Role role;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Ship> ships;
+    List<Ship> ships;
 
     public User(String name, String email, String password) {
         this.name = name;
@@ -58,7 +61,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     public String getPassword() {
@@ -100,6 +103,30 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
 

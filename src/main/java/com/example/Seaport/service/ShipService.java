@@ -9,10 +9,13 @@ import com.example.Seaport.model.cargo.LiquidCargo;
 import com.example.Seaport.repository.CargoRepository;
 import com.example.Seaport.repository.ShipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Service
 public class ShipService {
     private static ShipRepository shipRepository;
     private static CargoRepository cargoRepository;
@@ -25,6 +28,7 @@ public class ShipService {
 
     public Ship create(ShipRequest shipDto) {
         Ship ship = new Ship();
+
         ship.setTitle(shipDto.getTitle());
         ship.setShip_type(shipDto.getType());
         ship.setCargo_amount(shipDto.getCargoAmount());

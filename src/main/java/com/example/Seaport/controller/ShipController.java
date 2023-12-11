@@ -25,6 +25,11 @@ public class ShipController {
         return new ResponseEntity<>(ship, HttpStatus.CREATED);
     }
 
+    @PostMapping("/a")
+    public ResponseEntity<String> a() {
+        return ResponseEntity.ok("Post");
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Ship>> getAll() {
         List<Ship> ships = service.getAll();

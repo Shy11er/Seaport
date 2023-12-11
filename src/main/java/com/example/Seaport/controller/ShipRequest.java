@@ -7,8 +7,8 @@ public class ShipRequest {
     private String title;
     private Ship.ShipType type;
     private Cargo.CargoType cargoType;
-    private int cargoAmount;
-    private int weight;
+    private Integer cargoAmount;
+    private Integer weight;
 
     public Ship.ShipType getType() {
         return type;
