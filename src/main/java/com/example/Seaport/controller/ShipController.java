@@ -1,5 +1,6 @@
 package com.example.Seaport.controller;
 
+import com.example.Seaport.dto.ShipRequest;
 import com.example.Seaport.model.Ship;
 import com.example.Seaport.service.ShipService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,11 @@ public class ShipController {
         return new ResponseEntity<>(ship, HttpStatus.CREATED);
     }
 
-    @PostMapping("/a")
-    public ResponseEntity<String> a() {
-        return ResponseEntity.ok("Post");
-    }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Ship>> getAll() {
-        List<Ship> ships = service.getAll();
-        return new ResponseEntity<>(ships, HttpStatus.OK);
+    @GetMapping("/")
+    public List<Ship> getAll() {
+//    public String getAll() {
+        return service.getAll();
+//        return "POST";
     }
 }

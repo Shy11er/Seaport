@@ -3,9 +3,11 @@ package com.example.Seaport.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.Seaport.model.Cargo.CargoType;
+import org.hibernate.annotations.Cascade;
 
 @Table
 @Entity
@@ -14,7 +16,7 @@ public class Ship {
     @GeneratedValue
     private Integer id;
     private String title;
-    @Transient
+
     private Integer cargo_amount;
     private Integer weight;
     private ShipType ship_type;
@@ -22,15 +24,15 @@ public class Ship {
     private LocalDate arrival;
     private LocalDate departure;
 
-    @OneToOne
-    @JoinColumn(name="request_id")
-    private Request request;
-    @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL)
-    private List<Cargo> cargos;
-    @ManyToOne()
-    private Schedule schedule;
-    @ManyToOne()
-    private User user;
+//    @OneToOne
+//    @JoinColumn(name="request_id")
+//    private Request request;
+    @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cargo> cargos = new ArrayList<>();
+//@ManyToOne()
+//    private Schedule schedule;
+//    @ManyToOne()
+//    private User user;
 
     public enum ShipType {
         Tanker,
@@ -62,29 +64,29 @@ public class Ship {
         this.ship_type = ship_type;
     }
 
-    public Request getRequest() {
-        return request;
-    }
+//    public Request getRequest() {
+//        return request;
+//    }
+//
+//    public Schedule getSchedule() {
+//        return schedule;
+//    }
 
-    public Schedule getSchedule() {
-        return schedule;
-    }
+//    public User getUser() {
+//        return user;
+//    }
 
-    public User getUser() {
-        return user;
-    }
+//    public void setRequest(Request request) {
+//        this.request = request;
+//    }
 
-    public void setRequest(Request request) {
-        this.request = request;
-    }
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
+//    public void setSchedule(Schedule schedule) {
+//        this.schedule = schedule;
+//    }
 
     public void setType(ShipType type) {
         this.ship_type = type;
@@ -127,7 +129,7 @@ public class Ship {
     }
 
     public Integer getCargo_amount() {
-        return cargos.size();
+        return cargo_amount;
     }
 
     public LocalDate getArrival() {

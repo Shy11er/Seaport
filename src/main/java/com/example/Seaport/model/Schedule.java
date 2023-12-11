@@ -10,8 +10,8 @@ public class Schedule {
     @Id
     @GeneratedValue
     private Integer id;
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL)
-    private List<Ship> ships;
+//    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Ship> ships;
 
     public Schedule() {}
 
@@ -23,11 +23,11 @@ public class Schedule {
         return id;
     }
 
-    public void setShips(List<Ship> ships) {
-        this.ships = ships;
-    }
-
-    public List<Ship> getShips() {
-        return ships;
-    }
+//    public void setShips(List<Ship> ships) {
+//        this.ships = ships;
+//    }
+//
+//    public List<Ship> getShips() {
+//        return ships;
+//    }
 }

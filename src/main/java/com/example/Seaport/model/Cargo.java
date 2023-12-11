@@ -1,6 +1,7 @@
 package com.example.Seaport.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 
 @Table
 @Entity
@@ -11,6 +12,7 @@ public class Cargo {
     private CargoType cargo_type;
     private Integer weight;
     @ManyToOne
+//    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.PERSIST})
     @JoinColumn(name="ship_id")
     private Ship ship;
 

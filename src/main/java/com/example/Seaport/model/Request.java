@@ -8,21 +8,21 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL)
-    private Ship ship;
+//    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Ship ship;
 
     public Request(){}
-    public Request(Ship ship) {
-        this.ship = ship;
-    }
+//    public Request(Ship ship) {
+//        this.ship = ship;
+//    }
+//
+//    public void setShip(Ship ship) {
+//        this.ship = ship;
+//    }
 
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
-
-    public Ship getShip() {
-        return ship;
-    }
+//    public Ship getShip() {
+//        return ship;
+//    }
 
     public void setId(Integer id) {
         this.id = id;

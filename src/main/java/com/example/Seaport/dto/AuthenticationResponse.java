@@ -1,4 +1,4 @@
-package com.example.Seaport.controller;
+package com.example.Seaport.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

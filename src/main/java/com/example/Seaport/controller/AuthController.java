@@ -1,37 +1,29 @@
-package com.example.Seaport.controller;
-
-import com.example.Seaport.model.User;
-import com.example.Seaport.service.AuthenticationService;
-import com.example.Seaport.service.UserService;
-import org.apache.coyote.Response;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
+//package com.example.Seaport.controller;
+//
+//import com.example.Seaport.dto.AuthnticationRequest;
+//import com.example.Seaport.dto.JwtAuthenticationResponse;
+//import com.example.Seaport.dto.RegisterRequest;
+//import com.example.Seaport.service.AuthenticationService;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.web.bind.annotation.*;
+//
+////@CrossOrigin
+//@RestController
+//@RequestMapping("/auth")
 //@CrossOrigin
-@RestController
-@RequestMapping("/auth")
-@CrossOrigin
-public class AuthController {
-    private final AuthenticationService authService;
-
-    @Autowired
-    public AuthController(AuthenticationService authService) {
-        this.authService = authService;
-    }
-
-
-    @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request) {
-        return ResponseEntity.ok(authService.register(request));
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthnticationRequest request) {
-        return ResponseEntity.ok(authService.login(request));
-    }
-}
-
-
+//@RequiredArgsConstructor
+//public class AuthController {
+//    private final AuthenticationService authService;
+//
+//    @PostMapping("/register")
+//    public JwtAuthenticationResponse register(@RequestBody RegisterRequest request) {
+//        return authService.register(request);
+//    }
+//
+//    @PostMapping("/login")
+//    public JwtAuthenticationResponse login(@RequestBody AuthnticationRequest request) {
+//        return authService.login(request);
+//    }
+//}
+//
+//

@@ -1,4 +1,4 @@
-package com.example.Seaport.controller;
+package com.example.Seaport.dto;
 
 import com.example.Seaport.model.Cargo;
 import com.example.Seaport.model.Ship;

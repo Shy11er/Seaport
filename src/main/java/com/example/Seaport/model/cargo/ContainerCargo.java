@@ -11,10 +11,6 @@ public class ContainerCargo extends Cargo {
     private Integer id;
     private Integer amount;
 
-    public ContainerCargo(Integer amount) {
-        this.amount = amount;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
