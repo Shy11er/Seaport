@@ -4,18 +4,19 @@ import com.example.Seaport.model.Tap;
 import jakarta.persistence.Entity;
 
 import com.example.Seaport.model.Cargo.CargoType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
 public class LiquidTap extends Tap {
 
-    private CargoType cargoType = CargoType.Liqued;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
     public LiquidTap() {}
-    public LiquidTap(Integer work_speed) {
-        super(work_speed);
+    public LiquidTap(Integer work_speed, CargoType cargoType) {
+        super(work_speed, cargoType);
     }
 
-    public CargoType getLIQUID() {
-        return cargoType;
-    }
 }

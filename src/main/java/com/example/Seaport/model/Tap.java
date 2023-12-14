@@ -12,10 +12,12 @@ public class Tap {
     private Integer id;
     private Integer work_speed;
     private CargoType cargoType;
+    private Integer ship_id;
 
-    public Tap(Integer work_speed) {
+
+    public Tap(Integer work_speed, CargoType cargoType) {
         this.work_speed = work_speed;
-//        this.cargoType = cargoType;
+        this.cargoType = cargoType;
     }
 
     public Tap() {
@@ -35,5 +37,21 @@ public class Tap {
 
     public Integer getWork_speed() {
         return work_speed;
+    }
+
+    public void setCargoType(CargoType cargoType) {
+        this.cargoType = cargoType;
+    }
+
+    public CargoType getCargoType() {
+        return cargoType;
+    }
+
+    public Integer getShip_id() {
+        return ship_id;
+    }
+
+    public void setShip_id(Integer ship_id) {
+        this.ship_id = ship_id;
     }
 }

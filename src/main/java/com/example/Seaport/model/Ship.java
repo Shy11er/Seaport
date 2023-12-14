@@ -32,6 +32,7 @@ public class Ship {
     private String status;
     @Builder.Default
     private String departure = null;
+    private Integer cargoWeight;
 
     @OneToOne
     @JoinColumn(name="request_id")
@@ -62,6 +63,18 @@ public class Ship {
         this.ship_type = cargoType;
         this.cargo_type = cargo_type;
         this.arrival = arrival;
+    }
+
+    public void setCargos(List<Cargo> cargos) {
+        this.cargos = cargos;
+    }
+
+    public Integer getCargoWeight() {
+        return cargoWeight;
+    }
+
+    public void setCargoWeight(Integer cargoWeight) {
+        this.cargoWeight = cargoWeight;
     }
 
     public ShipType getShip_type() {
@@ -164,8 +177,8 @@ public class Ship {
         return cargos;
     }
 
-    public void setCargos(List<Cargo> cargos) {
-        this.cargos = cargos;
+    public void setCargos(Cargo cargos) {
+        this.cargos.add(cargos);
     }
 
     public String getStatus() {

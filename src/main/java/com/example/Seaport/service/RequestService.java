@@ -48,9 +48,8 @@ public class RequestService {
         ship.setCargo_amount(requestDto.getCargoAmount());
         ship.setSchedule(schedule);
         ship.setStatus("Waiting");
-
+        ship.setCargoWeight(requestDto.getCargoWeight());
         shipRepository.save(ship);
-
         for (int i = 0; i < requestDto.getCargoAmount(); i++) {
             Cargo cargo;
             switch (cargoType) {

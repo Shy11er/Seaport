@@ -3,18 +3,18 @@ package com.example.Seaport.model.tap;
 import com.example.Seaport.model.Cargo.CargoType;
 import com.example.Seaport.model.Tap;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
 public class ContainerTap extends Tap {
-    private CargoType cargoType = CargoType.Container;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
     public ContainerTap() {}
-    public ContainerTap(Integer work_speed) {
-        super(work_speed);
+    public ContainerTap(Integer work_speed, CargoType cargoType) {
+        super(work_speed, cargoType);
     }
 
-
-    public CargoType getContainer() {
-        return cargoType;
-    }
 }

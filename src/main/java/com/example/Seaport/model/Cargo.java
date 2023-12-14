@@ -14,9 +14,9 @@ public class Cargo {
     private Integer weight;
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name="ship_id")
     private Ship ship;
 
+//    private Integer ship_id;
     public enum CargoType {
         Bulk,
         Container,
@@ -54,4 +54,5 @@ public class Cargo {
     public void setShip(Ship ship) {
         this.ship = ship;
     }
+
 }
