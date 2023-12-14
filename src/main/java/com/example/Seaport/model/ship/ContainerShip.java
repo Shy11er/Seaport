@@ -7,8 +7,8 @@ import jakarta.persistence.Entity;
 public class ContainerShip extends Ship {
     private Integer amount;
 
-    public ContainerShip(Integer amount) {
-        this.amount = amount;
+    public ContainerShip() {
+        super();
     }
 
     public void setAmount(Integer amount) {

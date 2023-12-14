@@ -11,7 +11,7 @@ public class BulkShip extends Ship {
     private Integer volume;
 
     public BulkShip(Integer volume) {
-        this.volume = volume;
+        super();
     }
 
     public void setVolume(Integer volume) {

@@ -10,8 +10,8 @@ import jakarta.persistence.Table;
 public class Tanker extends Ship {
     private Integer volume;
 
-    public Tanker(Integer volume) {
-        this.volume = volume;
+    public Tanker() {
+        super();
     }
 
     public void setVolume(Integer volume) {

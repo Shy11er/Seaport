@@ -11,8 +11,15 @@ public class Tap {
     @GeneratedValue
     private Integer id;
     private Integer work_speed;
+    private CargoType cargoType;
 
-    public Tap() {;}
+    public Tap(Integer work_speed) {
+        this.work_speed = work_speed;
+//        this.cargoType = cargoType;
+    }
+
+    public Tap() {
+    }
 
     public Integer getId() {
         return id;

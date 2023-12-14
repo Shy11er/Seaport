@@ -6,15 +6,15 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class ContainerTap extends Tap {
-    private CargoType Container;
+    private CargoType cargoType = CargoType.Container;
 
     public ContainerTap() {}
-
-    public void setContainer(CargoType container) {
-        Container = container;
+    public ContainerTap(Integer work_speed) {
+        super(work_speed);
     }
 
+
     public CargoType getContainer() {
-        return Container;
+        return cargoType;
     }
 }

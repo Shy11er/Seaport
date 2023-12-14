@@ -1,16 +1,23 @@
 package com.example.Seaport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.example.Seaport.model.Cargo.CargoType;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 @Table
 @Entity
+//@Builder
+//@Data
 public class Ship {
     @Id
     @GeneratedValue
@@ -21,16 +28,19 @@ public class Ship {
     private Integer weight;
     private ShipType ship_type;
     private CargoType cargo_type;
-    private LocalDate arrival;
-    private LocalDate departure;
+    private String arrival;
+    private String status;
+    @Builder.Default
+    private String departure = null;
 
-//    @OneToOne
-//    @JoinColumn(name="request_id")
-//    private Request request;
+    @OneToOne
+    @JoinColumn(name="request_id")
+    private Request request;
+    @JsonIgnore
     @OneToMany(mappedBy = "ship", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cargo> cargos = new ArrayList<>();
-//@ManyToOne()
-//    private Schedule schedule;
+    @ManyToOne()
+    private Schedule schedule;
 //    @ManyToOne()
 //    private User user;
 
@@ -44,12 +54,14 @@ public class Ship {
     public Ship() {};
     public Ship(String title,
                 Integer weight,
-                ShipType type,
-                CargoType cargo_type) {
+                ShipType cargoType,
+                CargoType cargo_type,
+                String arrival) {
         this.title = title;
         this.weight = weight;
-        this.ship_type = type;
+        this.ship_type = cargoType;
         this.cargo_type = cargo_type;
+        this.arrival = arrival;
     }
 
     public ShipType getShip_type() {
@@ -64,29 +76,29 @@ public class Ship {
         this.ship_type = ship_type;
     }
 
-//    public Request getRequest() {
-//        return request;
-//    }
-//
-//    public Schedule getSchedule() {
-//        return schedule;
-//    }
+    public Request getRequest() {
+        return request;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
 
 //    public User getUser() {
 //        return user;
 //    }
 
-//    public void setRequest(Request request) {
-//        this.request = request;
-//    }
+    public void setRequest(Request request) {
+        this.request = request;
+    }
 
 //    public void setUser(User user) {
 //        this.user = user;
 //    }
 
-//    public void setSchedule(Schedule schedule) {
-//        this.schedule = schedule;
-//    }
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
 
     public void setType(ShipType type) {
         this.ship_type = type;
@@ -100,7 +112,7 @@ public class Ship {
         this.title = title;
     }
 
-    public void setArrival(LocalDate arrival) {
+    public void setArrival(String arrival) {
         this.arrival = arrival;
     }
 
@@ -112,7 +124,7 @@ public class Ship {
         this.cargo_type = cargo_type;
     }
 
-    public void setDeparture(LocalDate departure) {
+    public void setDeparture(String departure) {
         this.departure = departure;
     }
 
@@ -132,11 +144,11 @@ public class Ship {
         return cargo_amount;
     }
 
-    public LocalDate getArrival() {
+    public String getArrival() {
         return arrival;
     }
 
-    public LocalDate getDeparture() {
+    public String getDeparture() {
         return departure;
     }
 
@@ -154,5 +166,13 @@ public class Ship {
 
     public void setCargos(List<Cargo> cargos) {
         this.cargos = cargos;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -8,21 +8,22 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-//    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Ship ship;
+    @OneToOne(mappedBy = "request", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Ship ship;
+    private String status;
 
     public Request(){}
-//    public Request(Ship ship) {
-//        this.ship = ship;
-//    }
-//
-//    public void setShip(Ship ship) {
-//        this.ship = ship;
-//    }
+    public Request(String status) {
+        this.status = status;
+    }
 
-//    public Ship getShip() {
-//        return ship;
-//    }
+    public void setShip(Ship ship) {
+        this.ship = ship;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
 
     public void setId(Integer id) {
         this.id = id;
@@ -30,5 +31,13 @@ public class Request {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

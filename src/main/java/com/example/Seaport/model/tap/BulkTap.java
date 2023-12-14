@@ -7,14 +7,14 @@ import com.example.Seaport.model.Cargo.CargoType;
 
 @Entity
 public class BulkTap extends Tap {
-    private CargoType BULK;
-    public BulkTap() {}
-
-    public void setBULK(CargoType BULK) {
-        this.BULK = BULK;
+    private CargoType cargoType = CargoType.Bulk;
+    public BulkTap(Integer work_speed) {
+        super(work_speed);
     }
 
+    public BulkTap() {}
+
     public CargoType getBULK() {
-        return BULK;
+        return cargoType;
     }
 }

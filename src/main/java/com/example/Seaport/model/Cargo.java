@@ -1,5 +1,6 @@
 package com.example.Seaport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Cascade;
 
@@ -12,7 +13,7 @@ public class Cargo {
     private CargoType cargo_type;
     private Integer weight;
     @ManyToOne
-//    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.MERGE, org.hibernate.annotations.CascadeType.PERSIST})
+    @JsonIgnore
     @JoinColumn(name="ship_id")
     private Ship ship;
 

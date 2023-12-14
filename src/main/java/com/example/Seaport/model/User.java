@@ -1,5 +1,6 @@
 //package com.example.Seaport.model;
 //
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 //import jakarta.persistence.*;
 //import lombok.*;
 //import org.springframework.security.core.GrantedAuthority;
@@ -28,6 +29,8 @@
 //    String password;
 //    LocalDateTime createdAt;
 //    LocalDateTime updatedAt;
+//
+//    @JsonIgnore
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 //    List<Ship> ships;
 //

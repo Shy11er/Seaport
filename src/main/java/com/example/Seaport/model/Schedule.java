@@ -1,7 +1,9 @@
 package com.example.Seaport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,8 +12,9 @@ public class Schedule {
     @Id
     @GeneratedValue
     private Integer id;
-//    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Ship> ships;
+    @JsonIgnore
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Ship> ships = new ArrayList<>();
 
     public Schedule() {}
 
@@ -23,11 +26,11 @@ public class Schedule {
         return id;
     }
 
-//    public void setShips(List<Ship> ships) {
-//        this.ships = ships;
-//    }
-//
-//    public List<Ship> getShips() {
-//        return ships;
-//    }
+    public void setShips(Ship ship) {
+        this.ships.add(ship);
+    }
+
+    public List<Ship> getShips() {
+        return ships;
+    }
 }

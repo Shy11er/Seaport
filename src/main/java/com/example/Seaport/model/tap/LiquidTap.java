@@ -8,15 +8,14 @@ import com.example.Seaport.model.Cargo.CargoType;
 @Entity
 public class LiquidTap extends Tap {
 
-    private CargoType LIQUID;
+    private CargoType cargoType = CargoType.Liqued;
 
     public LiquidTap() {}
-
-    public void setLIQUID(CargoType LIQUID) {
-        this.LIQUID = LIQUID;
+    public LiquidTap(Integer work_speed) {
+        super(work_speed);
     }
 
     public CargoType getLIQUID() {
-        return LIQUID;
+        return cargoType;
     }
 }
