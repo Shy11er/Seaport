@@ -1,6 +1,5 @@
 package com.example.Seaport.service;
 
-import com.example.Seaport.model.Schedule;
 import com.example.Seaport.model.Ship;
 import com.example.Seaport.repository.ScheduleRepository;
 import com.example.Seaport.repository.ShipRepository;
@@ -13,6 +12,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+//@NoArgsConstructor
 public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
     private final ShipRepository shipRepository;

@@ -1,29 +1,24 @@
 package com.example.Seaport;
 
-import com.example.Seaport.model.Cargo;
 import com.example.Seaport.model.Ship;
 import com.example.Seaport.model.Tap;
-import com.example.Seaport.model.ship.BulkShip;
-import com.example.Seaport.model.ship.ContainerShip;
-import com.example.Seaport.model.ship.Tanker;
-import com.example.Seaport.model.tap.BulkTap;
-import com.example.Seaport.model.tap.ContainerTap;
-import com.example.Seaport.model.tap.LiquidTap;
 import com.example.Seaport.repository.CargoRepository;
 import com.example.Seaport.repository.ShipRepository;
 import com.example.Seaport.repository.TapRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
 @RequestMapping(path="main")
+@AllArgsConstructor
+//@NoArgsConstructor
+//@RequiredArgsConstructor
 public class Port {
     private final TapRepository tapRepository;
     private final ShipRepository shipRepository;
@@ -38,6 +33,7 @@ public class Port {
     private List<Ship> tankers = new ArrayList<>();
     private List<Ship> containerShips = new ArrayList<>();
     private List<Ship> ships = new ArrayList<>();
+
 
     public void init() {
 //        bulkTaps = tapRepository.findAllByType(0);
@@ -66,12 +62,16 @@ public class Port {
                     Integer cargo_weight = ship.getCargoWeight();
                     System.out.println(cargo_weight);
                     Integer tap_speed = tap.getWork_speed();
-                    Integer cargoPerHour = (cargo_weight*cargo_amount) / tap_speed;
-                    Integer cargoPerDay = cargoPerHour / 24;
-                    String arrival = ship.getArrival();
+                    Integer work_hours = (cargo_weight*cargo_amount) / tap_speed;
+                    Integer work_days = work_hours / 24;
+                    LocalDateTime arrival = ship.getArrival();
+                    LocalDateTime departure = arrival.plusHours(work_hours);
+                    ship.setDeparture(departure);
+                    shipRepository.save(ship);
                     System.out.println(arrival);
-                    System.out.println(cargoPerDay);
-                    System.out.println(cargoPerHour);
+                    System.out.println(work_hours);
+                    System.out.println(work_days);
+//                    System.out.println(LocalDateTime.of(mew LocalDateTime(arrival)));
                 }
             }
         }

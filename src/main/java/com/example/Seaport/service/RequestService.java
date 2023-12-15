@@ -15,9 +15,6 @@ import com.example.Seaport.repository.ShipRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
 
 @Service
 @AllArgsConstructor
@@ -50,6 +47,7 @@ public class RequestService {
         ship.setStatus("Waiting");
         ship.setCargoWeight(requestDto.getCargoWeight());
         shipRepository.save(ship);
+
         for (int i = 0; i < requestDto.getCargoAmount(); i++) {
             Cargo cargo;
             switch (cargoType) {

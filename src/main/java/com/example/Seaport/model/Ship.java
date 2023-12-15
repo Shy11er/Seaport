@@ -28,10 +28,9 @@ public class Ship {
     private Integer weight;
     private ShipType ship_type;
     private CargoType cargo_type;
-    private String arrival;
+    private LocalDateTime arrival;
+    private LocalDateTime departure;
     private String status;
-    @Builder.Default
-    private String departure = null;
     private Integer cargoWeight;
 
     @OneToOne
@@ -57,7 +56,7 @@ public class Ship {
                 Integer weight,
                 ShipType cargoType,
                 CargoType cargo_type,
-                String arrival) {
+                LocalDateTime arrival) {
         this.title = title;
         this.weight = weight;
         this.ship_type = cargoType;
@@ -125,7 +124,7 @@ public class Ship {
         this.title = title;
     }
 
-    public void setArrival(String arrival) {
+    public void setArrival(LocalDateTime arrival) {
         this.arrival = arrival;
     }
 
@@ -137,7 +136,7 @@ public class Ship {
         this.cargo_type = cargo_type;
     }
 
-    public void setDeparture(String departure) {
+    public void setDeparture(LocalDateTime departure) {
         this.departure = departure;
     }
 
@@ -157,11 +156,11 @@ public class Ship {
         return cargo_amount;
     }
 
-    public String getArrival() {
+    public LocalDateTime getArrival() {
         return arrival;
     }
 
-    public String getDeparture() {
+    public LocalDateTime getDeparture() {
         return departure;
     }
 

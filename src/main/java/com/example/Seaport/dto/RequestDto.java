@@ -12,7 +12,7 @@ public class RequestDto {
     private Integer cargoAmount;
     private Integer shipWeight;
     private Integer cargoWeight;
-    private String arrival;
+    private LocalDateTime arrival;
 
 
     public void setTitle(String title) {
@@ -39,7 +39,7 @@ public class RequestDto {
         this.cargoWeight = cargoWeight;
     }
 
-    public void setArrival(String arrival) {
+    public void setArrival(LocalDateTime arrival) {
         this.arrival = arrival;
     }
 
@@ -67,7 +67,7 @@ public class RequestDto {
         return cargoWeight;
     }
 
-    public String getArrival() {
+    public LocalDateTime getArrival() {
         return arrival;
     }
 }
