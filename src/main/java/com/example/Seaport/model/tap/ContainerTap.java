@@ -13,8 +13,8 @@ public class ContainerTap extends Tap {
     private Integer id;
 
     public ContainerTap() {}
-    public ContainerTap(Integer work_speed, CargoType cargoType) {
-        super(work_speed, cargoType);
+    public ContainerTap(Integer work_speed, CargoType cargoType, String status) {
+        super(work_speed, cargoType, status);
     }
 
 }

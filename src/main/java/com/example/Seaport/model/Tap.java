@@ -13,11 +13,12 @@ public class Tap {
     private Integer work_speed;
     private CargoType cargoType;
     private Integer ship_id;
+    private String status;
 
-
-    public Tap(Integer work_speed, CargoType cargoType) {
+    public Tap(Integer work_speed, CargoType cargoType, String status) {
         this.work_speed = work_speed;
         this.cargoType = cargoType;
+        this.status = status;
     }
 
     public Tap() {
@@ -53,5 +54,13 @@ public class Tap {
 
     public void setShip_id(Integer ship_id) {
         this.ship_id = ship_id;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

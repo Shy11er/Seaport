@@ -1,5 +1,8 @@
 package com.example.Seaport.controller;
 
+import com.example.Seaport.dto.ScheduleDto;
+import com.example.Seaport.model.Request;
+import com.example.Seaport.model.Schedule;
 import com.example.Seaport.model.Ship;
 import com.example.Seaport.service.ScheduleService;
 import lombok.AllArgsConstructor;
@@ -18,9 +21,17 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
 
-    @GetMapping("/")
-    public ResponseEntity<List<Ship>> get() {
-        List<Ship> ships = scheduleService.getAll();
-        return new ResponseEntity<>(ships, HttpStatus.OK);
+    @RequestMapping("/get")
+    public ResponseEntity<Schedule> get(@RequestParam(name = "sortBy", defaultValue = "arrival") String sortBy, @RequestParam(name = "dir", defaultValue = "ASC") String dir) {
+            Schedule schedule = scheduleService.getAllS(sortBy, dir);
+        return new ResponseEntity<>(schedule, HttpStatus.OK);
     }
+
+//    @GetMapping("/")
+//    public ResponseEntity<List<Request>> get() {
+////    public ResponseEntity<List<Request>> get() {
+//        List<Request> requests = scheduleService.getAllR();
+////        List<Request> requests = scheduleService.getAll();
+//        return new ResponseEntity<>(requests, HttpStatus.OK);
+//    }
 }

@@ -15,8 +15,8 @@ public class LiquidTap extends Tap {
     private Integer id;
 
     public LiquidTap() {}
-    public LiquidTap(Integer work_speed, CargoType cargoType) {
-        super(work_speed, cargoType);
+    public LiquidTap(Integer work_speed, CargoType cargoType, String status) {
+        super(work_speed, cargoType, status);
     }
 
 }

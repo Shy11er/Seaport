@@ -18,15 +18,15 @@ public class TapConfig {
     CommandLineRunner commandLineRunnerTap(TapRepository repository){
         return args -> {
             Tap tap1 = new BulkTap(
-                    5, CargoType.Bulk
+                    5, CargoType.Bulk, "Waiting"
             );
 
             Tap tap2 = new LiquidTap(
-                    12, CargoType.Liqued
+                    12, CargoType.Liqued, "Waiting"
             );
 
             Tap tap3 = new ContainerTap(
-                    2, CargoType.Container
+                    2, CargoType.Container, "Waiting"
             );
 
             repository.saveAll(List.of(tap1, tap2, tap3));

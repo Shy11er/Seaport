@@ -13,8 +13,8 @@ public class BulkTap extends Tap {
     @GeneratedValue
     private Integer id;
 
-    public BulkTap(Integer work_speed, CargoType cargoType) {
-        super(work_speed, cargoType);
+    public BulkTap(Integer work_speed, CargoType cargoType, String status) {
+        super(work_speed, cargoType, status);
 //        this.cargoType = CargoType.Bulk;
     }
 
