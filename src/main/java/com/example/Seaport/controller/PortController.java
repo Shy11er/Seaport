@@ -17,6 +17,7 @@ public class PortController {
 
     @PostMapping("/work")
     public void work() {
+        System.out.println("started");
       portService.work();
   }
 }

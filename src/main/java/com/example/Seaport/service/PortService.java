@@ -14,6 +14,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -44,11 +45,32 @@ public class PortService {
 
     public void work() {
         init();
-
+        System.out.println("working");
         for (Tap tap : taps) {
             for (Request request : requests) {
-
-                if (tap.getCargoType() == request.getShip().getCargo_type() && tap.getShip_id() == null) {
+                if (tap.getWorkDays() == null || tap.getWorkDays() <= 0) {
+                    for (Request re1 : requests) {
+                        if (re1.getShip().getId().equals(tap.getShip_id())) {
+                            re1.setStatus("Done");
+                            requestRepositrory.save(re1);
+                            break;
+                        }
+                    }
+                    tap.setShip_id(null);
+                    tap.setStatus("Waiting");
+                    tap.setWorkDays(0);
+                    tapRepository.save(tap);
+                }
+//                System.out.println(tap.getCargoType());
+//                System.out.println(request.getShip().getCargo_type());
+//                System.out.println(tap.getShip_id());
+//                System.out.println(request.getStatus());
+//                System.out.println(tap.getCargoType() == request.getShip().getCargo_type() && tap.getShip_id() == null && request.getStatus() == "Waiting");
+//                System.out.println(tap.getCargoType() == request.getShip().getCargo_type());
+//                System.out.println(tap.getShip_id() == null );
+//                System.out.println(request.getStatus() == "Waiting");
+                if (tap.getCargoType() == request.getShip().getCargo_type() && tap.getShip_id() == null && request.getStatus().equals("Waiting")) {
+                    System.out.println("ajfopasj;fkjas;kfj;askfj;askjfkl;asjkf");
                     Ship ship = request.getShip();
                     Integer cargo_amount = ship.getCargo_amount();
                     Integer cargo_weight = ship.getCargoWeight();
@@ -60,8 +82,8 @@ public class PortService {
                     LocalDateTime arrival = request.getArrival();
                     LocalDateTime departure = request.getDeparture();
                     Duration duration = Duration.between(arrival, departure);
-                    long durationDay = duration.getSeconds() * 60 * 60 * 24;
-
+                    long durationDay = duration.getSeconds() / 60 / 60/ 24;
+                    System.out.println(durationDay);
                     if (durationDay < work_days) {
                         long diff = work_days - durationDay;
                         long shipFine = diff * 2000;
@@ -70,15 +92,15 @@ public class PortService {
                     }
 
                     request.setStatus("Working");
+                    tap.setWorkDays(work_days);
                     tap.setStatus("Working");
                     tap.setShip_id(request.getShip().getId());
                     tapRepository.save(tap);
                     requestRepositrory.save(request);
 
-                    System.out.println(work_hours);
-                    System.out.println(work_days);
-//                    System.out.println(LocalDateTime.of(mew LocalDateTime(arrival)));
                 }
+
+                tap.setWorkDays(tap.getWorkDays() - 1);
             }
         }
     }
