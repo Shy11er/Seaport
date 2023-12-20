@@ -26,7 +26,7 @@ public class CraneController {
     @GetMapping("/get-all")
     public ResponseEntity<List<Tap>> getAll() {
         List<Tap> taps = tapService.getAll();
-        portService.work();
+//        portService.work();
         return new ResponseEntity<>(taps, HttpStatus.OK);
     }
 }

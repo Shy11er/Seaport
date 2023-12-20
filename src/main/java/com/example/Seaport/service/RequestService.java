@@ -18,6 +18,7 @@ import org.springframework.context.annotation.ScannedGenericBeanDefinition;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
@@ -86,10 +87,17 @@ public class RequestService {
 
         Integer stayDay = ship.getPlannedStayDays();
         LocalDateTime arrival = requestDto.getArrival();
+        LocalDateTime newArrival = requestDto.getNewArrival();
 
         request.setArrival(arrival);
         request.setDeparture(arrival.plusDays(stayDay));
         request.setShip(ship);
+
+        if (newArrival != null) {
+            request.setNewArrival(newArrival);
+            request.setDeparture(newArrival.plusDays(stayDay));
+        }
+
         ship.getRequest().add(request);
 
         Schedule schedule = scheduleRepository.findById(1).orElseThrow(() -> new RuntimeException("Schedule is undefined"));
@@ -116,5 +124,9 @@ public class RequestService {
     public boolean deleteRequest(Integer requestId) {
         requestRepository.deleteById(requestId);
         return true;
+    }
+
+    public List<Request> getAll() {
+        return requestRepository.findAll();
     }
 }

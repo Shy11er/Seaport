@@ -1,5 +1,6 @@
 package com.example.Seaport.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import com.example.Seaport.model.Cargo.CargoType;
@@ -15,6 +16,11 @@ public class Tap {
     private Integer ship_id;
     private String status;
     private Integer workDays;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "request_id")
+//    @JsonIgnoreProperties("tap")
+//    private Request request;
+    private Integer request_id = 0;
 
     public Tap(Integer work_speed, CargoType cargoType, String status) {
         this.work_speed = work_speed;
@@ -59,5 +65,17 @@ public class Tap {
     }
     public void setWorkDays(Integer workDays) {
         this.workDays = workDays;
+    }
+//    public void setRequest(Request request) {
+//        this.request = request;
+//    }
+//    public Request getRequest() {
+//        return request;
+//    }
+    public Integer getRequest_id() {
+        return request_id;
+    }
+    public void setRequest_id(Integer request_id) {
+        this.request_id = request_id;
     }
 }

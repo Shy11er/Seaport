@@ -30,9 +30,11 @@ public class SimulationService implements SimulationServiceInterface {
     private static String[] shipTitles = generateRandomShipTitle(100);
 
 
-    private static final long CREATION_INTERVAL = 1000;
+    private static final long CREATION_INTERVAL = 100;
     private boolean simulationRunning = false;
     private int secondsElapsed = 0;
+    private int step = 1;
+    private LocalDateTime nowDate;
 
 
 
@@ -49,33 +51,49 @@ public class SimulationService implements SimulationServiceInterface {
     @Override
     public void simulation() {
         if (simulationRunning) {
-            secondsElapsed++;
+            secondsElapsed += step;
             Ship.ShipType[] shipTypes = Ship.ShipType.values();
 
-            int randomShipType = new Random().nextInt(shipTypes.length);
-            int randomShipTitle = new Random().nextInt(100);
+            int countShip = getRandomNumberInRange(1, 3);
+            System.out.println(countShip);
 
-            Cargo.CargoType cargoType = shipTypes[randomShipType] == Ship.ShipType.Tanker ? Cargo.CargoType.Liqued : shipTypes[randomShipType] == Ship.ShipType.Bulk ? Cargo.CargoType.Bulk : Cargo.CargoType.Container;
+            while (countShip > 0) {
+                int randomShipType = new Random().nextInt(shipTypes.length);
+                int randomShipTitle = new Random().nextInt(100);
 
-            ShipDto shipDto = ShipDto.builder()
-                    .title(shipTitles[randomShipTitle])
-                    .cargoAmount(new Random().nextInt(10, 100))
-                    .shipWeight(new Random().nextInt(900, 2000))
-                    .dayStay(new Random().nextInt(1, 10))
-                    .cargoType(cargoType)
-                    .cargoWeight(new Random().nextInt(10, 100))
-                    .shipType(shipTypes[randomShipType])
-                    .build();
+                Cargo.CargoType cargoType = shipTypes[randomShipType] == Ship.ShipType.Tanker ? Cargo.CargoType.Liqued : shipTypes[randomShipType] == Ship.ShipType.Bulk ? Cargo.CargoType.Bulk : Cargo.CargoType.Container;
 
-            Ship ship = shipService.create(shipDto);
+                ShipDto shipDto = ShipDto.builder()
+                        .title(shipTitles[randomShipTitle])
+                        .cargoAmount(new Random().nextInt(10, 100))
+                        .shipWeight(new Random().nextInt(900, 2000))
+                        .dayStay(new Random().nextInt(1, 10))
+                        .cargoType(cargoType)
+                        .cargoWeight(new Random().nextInt(10, 100))
+                        .shipType(shipTypes[randomShipType])
+                        .build();
 
-            RequestDto requestDto = RequestDto.builder()
-                    .arrival(LocalDateTime.now().plusDays(secondsElapsed))
-                    .id(ship.getId())
-                    .build();
+                Ship ship = shipService.create(shipDto);
 
-            Request request = requestService.create(requestDto);
-            portService.work();
+                RequestDto requestDto = new RequestDto();
+                requestDto.setArrival(nowDate);
+                requestDto.setId(ship.getId());
+
+                // Отклонение
+                int rand = getRandomNumberInRange(1, 10);
+                if (rand >= 8) {
+                    int daysToAdd = new Random().nextInt(8) + 2;
+                    LocalDateTime newArrival = nowDate.plusDays(daysToAdd);
+
+                    requestDto.setNewArrival(newArrival);
+                }
+
+                requestService.create(requestDto);
+                countShip--;
+            }
+
+//            portService.work();
+            nowDate = nowDate.plusDays(step);
             if (secondsElapsed >= 30) {
                 simulationRunning = false;
                 System.out.println("Simulation completed.");
@@ -99,42 +117,16 @@ public class SimulationService implements SimulationServiceInterface {
     }
 
     @Override
-    public void startSimulation() {
+    public void startSimulation(int step) {
         simulationRunning = true;
         secondsElapsed = 0;
+        this.step = step;
+        this.nowDate = LocalDateTime.now();
         System.out.println("Simulation started.");
     }
 
-    public AccountingDto get() {
-
-        List<Request> requests = requestRepositrory.findAll();
-        int amountOfRequests = requests.size();
-        int amountFine = 0;
-        double averQueue = amountOfRequests * 0.7;
-        int maxDur = -1000;
-        int duration = 0;
-
-        for (Request request : requests) {
-            Ship ship = request.getShip();
-
-            if (ship.getFine() != null) {
-                amountFine += ship.getFine();
-            }
-
-            int dura = (int) Duration.between(request.getArrival(), request.getDeparture()).getSeconds() / 60 / 60 / 24;
-            if (dura > maxDur) {
-                maxDur = dura;
-            }
-            duration += dura;
-        }
-
-        Integer a = amountOfRequests;
-        Integer b = amountFine;
-        Double c = averQueue;
-        Double d = requests.size() == 0 ? 0 : (double) duration / amountOfRequests;
-        Integer e = maxDur == -1000 ? 0 : maxDur;
-
-        AccountingDto dto = new AccountingDto(a, b, c, d, e);
-        return dto;
+    public int getRandomNumberInRange(int min, int max) {
+        Random random = new Random();
+        return random.nextInt(max - min + 1) + min;
     }
 }

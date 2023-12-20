@@ -22,14 +22,14 @@ public class RequestController {
     @PostMapping("/create")
     public ResponseEntity<Request> create(@RequestBody RequestDto requestDto) {
         Request request = requestService.create(requestDto);
-        portService.work();
+//        portService.work();
         return new ResponseEntity<>(request, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Request> update(@RequestBody RequestDto requestDto) {
         Request request = requestService.update(requestDto.getId(), requestDto);
-        portService.work();
+//        portService.work();
         return new ResponseEntity<>(request, HttpStatus.CREATED);
     }
 
@@ -38,7 +38,7 @@ public class RequestController {
         boolean isDeleted = requestService.deleteRequest(shipDto.getId());
 
         if (isDeleted) {
-            portService.work();
+//            portService.work();
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

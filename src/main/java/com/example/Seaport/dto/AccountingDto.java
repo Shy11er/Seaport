@@ -1,13 +1,13 @@
 package com.example.Seaport.dto;
 
 public class AccountingDto {
-    private Integer amountOfRequests;
-    private Integer amountFine;
+    private Long amountOfRequests;
+    private Long amountFine;
     private Double averQueue;
     private Double duration;
-    private Integer maxDur;
+    private Long maxDur;
 
-    public AccountingDto(Integer amountOfRequests, Integer amountFine, Double averQueue, Double duration, Integer maxDur) {
+    public AccountingDto(Long amountOfRequests, Long amountFine, Double averQueue, Double duration, Long maxDur) {
         this.amountOfRequests = amountOfRequests;
         this.amountFine = amountFine;
         this.averQueue = averQueue;
@@ -25,23 +25,23 @@ public class AccountingDto {
         return duration;
     }
 
-    public Integer getAmountFine() {
+    public Long getAmountFine() {
         return amountFine;
     }
 
-    public Integer getAmountOfRequests() {
+    public Long getAmountOfRequests() {
         return amountOfRequests;
     }
 
-    public Integer getMaxDur() {
+    public Long getMaxDur() {
         return maxDur;
     }
 
-    public void setAmountFine(Integer amountFine) {
+    public void setAmountFine(Long amountFine) {
         this.amountFine = amountFine;
     }
 
-    public void setAmountOfRequests(Integer amountOfRequests) {
+    public void setAmountOfRequests(Long amountOfRequests) {
         this.amountOfRequests = amountOfRequests;
     }
 
@@ -53,7 +53,7 @@ public class AccountingDto {
         this.duration = duration;
     }
 
-    public void setMaxDur(Integer maxDur) {
+    public void setMaxDur(Long maxDur) {
         this.maxDur = maxDur;
     }
 }

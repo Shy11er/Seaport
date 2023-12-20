@@ -80,9 +80,6 @@ public class Ship {
     public void setRequest(Request requests) {
         this.request.add(requests);
     }
-    public void setType(ShipType type) {
-        this.ship_type = type;
-    }
     public void setId(Integer id) {
         this.id = id;
     }

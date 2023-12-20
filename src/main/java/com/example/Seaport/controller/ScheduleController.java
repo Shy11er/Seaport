@@ -26,7 +26,7 @@ public class ScheduleController {
     @RequestMapping("/get")
     public ResponseEntity<Schedule> get(@RequestParam(name = "sortBy", defaultValue = "arrival") String sortBy, @RequestParam(name = "dir", defaultValue = "ASC") String dir) {
         Schedule schedule = scheduleService.getAllS(sortBy, dir);
-        portService.work();
+//        portService.work();
         return new ResponseEntity<>(schedule, HttpStatus.OK);
     }
 

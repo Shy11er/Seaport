@@ -1,17 +1,22 @@
 package com.example.Seaport.dto;
 
-import com.example.Seaport.model.Cargo;
-import com.example.Seaport.model.Ship;
 import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Data
-@Builder
+//@Data
+//@Builder
 public class RequestDto {
     private Integer id;
     private LocalDateTime arrival;
+    private LocalDateTime newArrival;
+
+    public RequestDto(LocalDateTime arrival, Integer id) {
+        this.id = id;
+        this.arrival = arrival;
+    }
+    public RequestDto() {}
 
     public void setArrival(LocalDateTime arrival) {
         this.arrival = arrival;
@@ -24,5 +29,11 @@ public class RequestDto {
     }
     public void setId(Integer id) {
         this.id = id;
+    }
+    public LocalDateTime getNewArrival() {
+        return newArrival;
+    }
+    public void setNewArrival(LocalDateTime newArrival) {
+        this.newArrival = newArrival;
     }
 }

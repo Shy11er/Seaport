@@ -21,9 +21,16 @@ public class Request {
     @JsonIgnore
     private Schedule schedule;
 
+//    @OneToOne(mappedBy = "request", fetch = FetchType.LAZY)
+//    private Tap tap;
+
+    private Integer tap_id = 0;
     private String status;
     private LocalDateTime arrival;
+    private LocalDateTime newArrival;
     private LocalDateTime departure;
+    private LocalDateTime startUnboard;
+    private LocalDateTime finishUnboard;
 
     public Request(){}
     public Request(Integer id, String status, LocalDateTime arrival, LocalDateTime departure, Ship ship){
@@ -70,16 +77,37 @@ public class Request {
     public LocalDateTime getArrival() {
         return arrival;
     }
-
     public LocalDateTime getDeparture() {
         return departure;
     }
-
     public Schedule getSchedule() {
         return schedule;
     }
-
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
+    }
+    public void setNewArrival(LocalDateTime newArrival) {
+        this.newArrival = newArrival;
+    }
+    public LocalDateTime getNewArrival() {
+        return newArrival;
+    }
+    public LocalDateTime getStartUnboard() {
+        return startUnboard;
+    }
+    public void setStartUnboard(LocalDateTime startUnboard) {
+        this.startUnboard = startUnboard;
+    }
+    public LocalDateTime getFinishUnboard() {
+        return finishUnboard;
+    }
+    public void setFinishUnboard(LocalDateTime finishUnboard) {
+        this.finishUnboard = finishUnboard;
+    }
+    public void setTap_id(Integer tap_id) {
+        this.tap_id = tap_id;
+    }
+    public Integer getTap_id() {
+        return tap_id;
     }
 }
